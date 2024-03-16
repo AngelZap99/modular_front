@@ -1,11 +1,8 @@
 import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement, Tooltip } from "chart.js";
-import moment from "moment";
+import { ChartOptions } from "chart.js";
 import { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
-import { YearSelector } from "./YearSelector";
-import axios from "axios";
-import { apiUrl } from "../../../api";
-import { toast } from "react-toastify";
+
 
 
 const meses = [
@@ -26,14 +23,14 @@ const meses = [
 
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip);
 export const BonusPredictChart = () => {
-	const [selectedYear, setSelectedYear] = useState(moment().year());
+
 	const [months, setMonths] = useState<string[]>([]);
 	const [bonus, setBonus] = useState<number[]>([]);
 
 	useEffect(() => {
 		getData();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [selectedYear])
+	}, [])
 
 	const getData = () => {
 		for (let i = 0; i < 10; i++) {
@@ -68,17 +65,35 @@ export const BonusPredictChart = () => {
 		],
 	};
 
-	const options = {
-		indexAxis: 'x',
+	const options: ChartOptions<'line'> = {
+		scales: {
+		  x: {
+			beginAtZero: false,
+			title: {
+			  display: true,
+			  text: 'Meses',
+			},
+		  },
+		  y: {
+			beginAtZero: false,
+			title: {
+			  display: true,
+			  text: 'Bonos',
+			},
+		  },
+		},
 		responsive: true,
 		plugins: {
-			legend: true,
-			title: {
-				display: true,
-				text: 'Ventas mensuales por año',
-			},
+		  legend: {
+			display: true,
+			position: 'top', // Cambiar la posición de la leyenda a "top"
+		  },
+		  title: {
+			display: true,
+			text: 'Ventas mensuales por año',
+		  },
 		},
-	};
+	  };
 
 	return (
 		<div className="flex flex-col w-1/2 space-y-md">

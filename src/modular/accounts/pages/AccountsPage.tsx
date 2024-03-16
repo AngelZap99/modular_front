@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import moment from "moment";
 import Layout from "../../../ui/layout/Layout";
 import { AccountsTable } from "../components";
-import { inputType } from "../../users/moleculs";
 import { CreateExcelButton, NavigateButton } from "../../../ui/moleculs";
-import { AccountsFormField } from "../moleculs/AccountsFormField";
 import axios from "axios";
 import { apiUrl } from "../../../api";
 import { toast } from "react-toastify";
@@ -15,8 +12,6 @@ import * as XLSX from 'xlsx';
 export function AccountsPage() {
 	const navigate = useNavigate();
 
-	const [initialDateToFilter, setInitialDateToFilter] = useState("2022-01-01");
-	const [endDateToFilter, setEndDateToFilter] = useState("2024-01-01");
 	const [accounts, setAccounts] = useState<IAccount[]>([]);
 
 	useEffect(() => {

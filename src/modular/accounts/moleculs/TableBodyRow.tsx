@@ -3,7 +3,7 @@ import { IAccount } from "../interfaces/interfaces";
 
 
 export const TableBodyRow = (props: IAccount) => {
-	const { id, name, created_at, created_by } = props;
+	const { id, name, created_at } = props;
 	return (
 		<tr className="bg-white border-b text-center">
 			<th scope="row" className="px-md py-md font-medium text-gray-900 whitespace-nowrap ">

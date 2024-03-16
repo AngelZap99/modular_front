@@ -12,7 +12,7 @@ interface ISelectorCreateBonuse {
 }
 moment.locale("es");
 export const SelectorCreateBonuse = (props: ISelectorCreateBonuse) => {
-  const { title, image } = props;
+  const { title } = props;
 
   const [showSelectors, setShowSelectors] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState(0);
