@@ -3,11 +3,12 @@ import logo from "../../../public/assets/icons/logo.png";
 import employe from "../../../public/assets/icons/employe.png"
 import check from "../../../public/assets/icons/check.png"
 import bonus from "../../../public/assets/icons/bonus.png"
+
 export const SideBar = () => {
   return (
     <div>
       <div className="w-sideBar h-screen">
-        <div className="h-full pt-4xl px-sm overflow-y-auto bg-gray-800 text-white">
+        <div className="h-full pt-4xl px-sm overflow-y-auto bg-gray-800 text-white ">
           <ul className="flex flex-col space-y-xsm text-xl justify-center items-center divide-y">
             <SideBarItem
               to={"/"}
@@ -103,3 +104,5 @@ export const SideBar = () => {
     </div>
   );
 };
+
+
