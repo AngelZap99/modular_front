@@ -5,7 +5,7 @@ import profile from "../../../public/assets/icons/profile.png";
 import { movementsFilterStore } from "../../store/selectedYearMonthStore";
 import { NavLink } from "react-router-dom";
 import menu from "../../../public/assets/icons/menu.png";
-import { useEffect, useState } from "react";
+
 interface Props {
   isSideBarOpen: boolean;
   setIsSideBarOpen: (isOpen: boolean) => void;
@@ -13,27 +13,9 @@ interface Props {
 
 const NavBar = ({ isSideBarOpen, setIsSideBarOpen }: Props) => {
   const { name } = userStore((state) => state);
-  const {email} = userStore((state) => state);
+  const { email } = userStore((state) => state);
   const logout = userStore((state) => state.logout);
   const resetFilter = movementsFilterStore((state) => state.clear);
-
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  useEffect(() => {
-    setIsSideBarOpen(windowWidth <= 768 ? isSideBarOpen : true);
-  }, [windowWidth, isSideBarOpen]);
 
   return (
     <div className="w-full h-[14vh] p-md flex flex-row items-center bg-white text-[#1B202D] justify-between  rounded-xsm border-y-2 border-gray-300 shadow-lg">
@@ -56,12 +38,11 @@ const NavBar = ({ isSideBarOpen, setIsSideBarOpen }: Props) => {
           {name}{" "}
         </h2>
       </div> */}
-      
+
       {/*Contenedor */}
 
       <Menu as="div" className="relative ml-md">
         <div>
-          
           <Menu.Button className="flex rounded-full hover:bg-gray-200 bg-white text-sm focus:ring-2 focus:ring-gray  ">
             <img
               className="w-2xl rounded-full ring-1 ring-gray-500 ring-opacity-1"
@@ -70,7 +51,7 @@ const NavBar = ({ isSideBarOpen, setIsSideBarOpen }: Props) => {
             />
           </Menu.Button>
         </div>
-        
+
         <Transition
           as={Fragment}
           enter="transition ease-out duration-100"
@@ -81,13 +62,15 @@ const NavBar = ({ isSideBarOpen, setIsSideBarOpen }: Props) => {
           leaveTo="transform opacity-0 scale-95"
         >
           <Menu.Items className="absolute right-0 top-3xl rounded-md dark:bg-[#212E36] dark:text-white bg-[#FBFBFE] text-[#1B202D] shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <div className="px-lg py-sm ">
+            <div className="px-lg py-sm ">
               <div className="justify-end text-sm text-gray-900 dark:text-white">
-                {" "}{name}{" "}
+                {" "}
+                {name}{" "}
               </div>
-              
+
               <div className="text-sm font-medium text-gray-900 truncate dark:text-gray-300">
-                {" "}{email}{" "}
+                {" "}
+                {email}{" "}
               </div>
               <hr className="mt-2 border-t-1 border-gray-800" />
             </div>
